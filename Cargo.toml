@@ -1,0 +1,13 @@
+[package]
+name = "ios-app-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+objc = "0.2.7"
+objc-derive = {git = "https://github.com/wooden-worm/objc-derive"}
+tao-foundation = {git = "https://github.com/wooden-worm/tao-foundation"}
+tao-uikit = {git = "https://github.com/wooden-worm/tao-uikit"}
+block = "0.1.6"
