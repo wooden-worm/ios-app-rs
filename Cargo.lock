@@ -85,7 +85,7 @@ dependencies = [
 [[package]]
 name = "tao-foundation"
 version = "0.1.0"
-source = "git+https://github.com/wooden-worm/tao-foundation#0c75fb59c12dc3784cbbc12834422b2595b6ecf6"
+source = "git+https://github.com/wooden-worm/tao-foundation#b721078ffa4ce00dcdab108e325a9684e98edb10"
 dependencies = [
  "block",
  "objc",
@@ -95,7 +95,7 @@ dependencies = [
 [[package]]
 name = "tao-uikit"
 version = "0.1.0"
-source = "git+https://github.com/wooden-worm/tao-uikit#2bf49a4b03bbdb9ebf0417ebb6ac9d96d854123b"
+source = "git+https://github.com/wooden-worm/tao-uikit#bce430079924915c12820d8d55dc6d26a874d478"
 dependencies = [
  "block",
  "objc",
