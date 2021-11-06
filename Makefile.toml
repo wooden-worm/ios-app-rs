@@ -1,0 +1,15 @@
+[tasks.build_ios_sim]
+args = ["bundle", "--target", "x86_64-apple-ios"]
+command = "cargo"
+
+[tasks.install_ios_sim]
+args = ["simctl", "install", "booted", "target/x86_64-apple-ios/debug/bundle/ios/ios-app-rs.app"]
+command = "xcrun"
+
+[tasks.run_ios_sim]
+args = ["simctl", "launch", "--console", "booted", "com.example.ios-app-rs"]
+command = "xcrun"
+dependencies = [
+  "build_ios_sim",
+  "install_ios_sim",
+]

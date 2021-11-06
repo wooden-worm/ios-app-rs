@@ -1,5 +1,6 @@
 [package]
 name = "ios-app-rs"
+description = "iOS app in pure Rust"
 version = "0.1.0"
 edition = "2021"
 
@@ -11,3 +12,6 @@ objc-derive = {git = "https://github.com/wooden-worm/objc-derive"}
 tao-foundation = {git = "https://github.com/wooden-worm/tao-foundation"}
 tao-uikit = {git = "https://github.com/wooden-worm/tao-uikit"}
 block = "0.1.6"
+
+[package.metadata.bundle]
+identifier = "com.example.ios-app-rs"
