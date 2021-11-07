@@ -1,17 +1,18 @@
-#[macro_use]
-extern crate objc;
 extern crate block;
 
 use std::ffi::CString;
 use std::os::raw::{c_char, c_int};
-use std::ptr::{null, null_mut};
-use std::sync::{Arc, Mutex, RwLock};
+use std::ptr::null_mut;
+use std::sync::Arc;
 
-use objc::runtime::{BOOL, Object, YES};
+use main_vc::MainViewController;
+use objc::runtime::{Object, BOOL, YES};
 use objc::{msg_send, sel, sel_impl};
 use objc_derive::{objc_impl, selector_impl, selector_init};
-use tao_foundation::{NSClassFromString, NSString, id};
+use tao_foundation::{id, NSClassFromString, NSString};
 use tao_uikit::{UISceneConfiguration, UIViewController, UIWindow};
+
+mod main_vc;
 
 extern "C" {
     /// Required for iOS applications to initialize.
@@ -58,17 +59,17 @@ impl MyApplicationDelegate {
     }
 
     #[selector_impl("application:didFinishLaunchingWithOptions:")]
-    fn did_finish_launching(&self, this: &Object, application: id, launchOptions: id) -> BOOL {
+    fn did_finish_launching(&self, _this: &Object, _application: id, _launch_options: id) -> BOOL {
         YES
     }
 
     #[selector_impl("application:configurationForConnectingSceneSession:options:")]
     fn config_scene(
         &self,
-        this: &Object,
-        application: id,
-        connectingSceneSession: id,
-        options: id,
+        _this: &Object,
+        _application: id,
+        _connecting_scene_session: id,
+        _options: id,
     ) -> id {
         unsafe {
             let ret = UISceneConfiguration::configuration_with_name_session_role(
@@ -76,11 +77,10 @@ impl MyApplicationDelegate {
                 NSString::from_str("Application"),
             );
 
-            let delegate_class = NSClassFromString(NSString::from_str(
-                WindowSceneDelegate::objc_class_name(),
-            ));
-            ret.set_delegate_class(delegate_class);
+            let delegate_class =
+                NSClassFromString(NSString::from_str(WindowSceneDelegate::objc_class_name()));
 
+            ret.set_delegate_class(delegate_class);
             ret.0
         }
     }
@@ -96,18 +96,15 @@ impl WindowSceneDelegate {
     }
 
     #[selector_impl("scene:willConnectToSession:options:")]
-    fn will_connect(&self, this: &Object, scene: id, session: id, connectionOptions: id) {
-        unsafe {
-            let window = UIWindow::alloc();
-            let window = window.init_with_window_scene(scene);
-            // let window = UIWindow(window);
+    fn will_connect(&self, _this: &Object, scene: id, _session: id, _connection_options: id) {
+        let window = UIWindow::alloc();
+        let window = window.init_with_window_scene(scene);
 
-            // let root_vc = Arc::new(AboutViewController::new());
-            // let obj_vc = root_vc.init_objc_proxy_obj();
+        let root_vc = Arc::new(MainViewController::new());
+        let obj_vc = root_vc.init_objc_proxy_obj();
 
-            // window.set_root_view_controller(UIViewController(obj_vc));
-            window.make_key_and_visible();
-        }
+        window.set_root_view_controller(UIViewController(obj_vc));
+        window.make_key_and_visible();
     }
 }
 

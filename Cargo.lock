@@ -21,9 +21,9 @@ dependencies = [
 
 [[package]]
 name = "libc"
-version = "0.2.106"
+version = "0.2.107"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a60553f9a9e039a333b4e9b20573b9e9b9c0bb3a11e201ccc48ef4283456d673"
+checksum = "fbe5e23404da5b4f555ef85ebed98fb4083e55a00c317800bc2a50ede9f3d219"
 
 [[package]]
 name = "malloc_buf"
@@ -85,7 +85,7 @@ dependencies = [
 [[package]]
 name = "tao-foundation"
 version = "0.1.0"
-source = "git+https://github.com/wooden-worm/tao-foundation#b721078ffa4ce00dcdab108e325a9684e98edb10"
+source = "git+https://github.com/wooden-worm/tao-foundation#2da62a6e85fd60defa8171c43d04ce211117637d"
 dependencies = [
  "block",
  "objc",
@@ -95,7 +95,7 @@ dependencies = [
 [[package]]
 name = "tao-uikit"
 version = "0.1.0"
-source = "git+https://github.com/wooden-worm/tao-uikit#bce430079924915c12820d8d55dc6d26a874d478"
+source = "git+https://github.com/wooden-worm/tao-uikit#9c33bc809d453a041b7d83d62599fc91e793bc74"
 dependencies = [
  "block",
  "objc",
